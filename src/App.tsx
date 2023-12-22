@@ -1,35 +1,76 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { Table, Tag } from "antd";
+import type { ColumnsType } from "antd/es/table";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+interface DataType {
+  key: string;
+  category: String;
+  name: string;
+  price: number;
+  tags: string[];
 }
 
-export default App
+const columns: ColumnsType<DataType> = [
+  {
+    title: "Category",
+    dataIndex: "category",
+    key: "category",
+  },
+  {
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
+  },
+  {
+    title: "Price",
+    dataIndex: "price",
+    key: "price",
+  },
+  {
+    title: "Tags",
+    dataIndex: "tags",
+    key: "tags",
+    render: (_, { tags }) => (
+      <>
+        {tags.map((tag) => {
+          return <Tag key={tag}>{tag.toUpperCase()}</Tag>;
+        })}
+      </>
+    ),
+  },
+];
+
+const data: DataType[] = [
+  {
+    key: "1",
+    category: "Food",
+    name: "Chips",
+    tags: ["cheap", "tasty"],
+    price: 50,
+  },
+  {
+    key: "2",
+    category: "Drink",
+    name: "Soda",
+    tags: ["fizzy", "refreshing"],
+    price: 80,
+  },
+  {
+    key: "3",
+    category: "Clothing",
+    name: "T-Shirt",
+    tags: ["casual", "comfortable"],
+    price: 25,
+  },
+  {
+    key: "4",
+    category: "Electronics",
+    name: "Headphones",
+    tags: ["wireless", "noise-cancelling"],
+    price: 120,
+  },
+];
+
+const App: React.FC = () => <Table columns={columns} dataSource={data} />;
+
+export default App;
