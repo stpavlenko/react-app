@@ -1,76 +1,64 @@
 import "./App.css";
-import { Table, Tag } from "antd";
+import { Button, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+const apiUrl = "https://pokeapi.co/api/v2/pokemon";
+const limit = 10;
 
 interface DataType {
-  key: string;
-  category: String;
   name: string;
-  price: number;
-  tags: string[];
+  url: string;
 }
 
 const columns: ColumnsType<DataType> = [
   {
-    title: "Category",
-    dataIndex: "category",
-    key: "category",
-  },
-  {
-    title: "Name",
+    title: "name",
     dataIndex: "name",
     key: "name",
   },
   {
-    title: "Price",
-    dataIndex: "price",
-    key: "price",
-  },
-  {
-    title: "Tags",
-    dataIndex: "tags",
-    key: "tags",
-    render: (_, { tags }) => (
-      <>
-        {tags.map((tag) => {
-          return <Tag key={tag}>{tag.toUpperCase()}</Tag>;
-        })}
-      </>
-    ),
+    title: "url",
+    dataIndex: "url",
+    key: "url",
   },
 ];
 
-const data: DataType[] = [
-  {
-    key: "1",
-    category: "Food",
-    name: "Chips",
-    tags: ["cheap", "tasty"],
-    price: 50,
-  },
-  {
-    key: "2",
-    category: "Drink",
-    name: "Soda",
-    tags: ["fizzy", "refreshing"],
-    price: 80,
-  },
-  {
-    key: "3",
-    category: "Clothing",
-    name: "T-Shirt",
-    tags: ["casual", "comfortable"],
-    price: 25,
-  },
-  {
-    key: "4",
-    category: "Electronics",
-    name: "Headphones",
-    tags: ["wireless", "noise-cancelling"],
-    price: 120,
-  },
-];
+const App: React.FC = () => {
+  const [page, setPage] = useState<number>(1);
+  const [dataSource, setDataSource] = useState<DataType[]>();
+  const [isNextBtnDisabled, setNextBtnDisabled] = useState<boolean>(false);
 
-const App: React.FC = () => <Table columns={columns} dataSource={data} />;
+  const getData = async (page: number, limit: number) => {
+    const offset = (page - 1) * limit;
 
+    const response = await axios.get(apiUrl, {
+      params: {
+        limit,
+        offset,
+      },
+    });
+
+    setNextBtnDisabled(offset + limit >= response.data.count);
+    setDataSource(response.data.results);
+  };
+
+  useEffect(() => {
+    getData(page, limit);
+  }, [page]);
+
+  return (
+    <>
+      <Table columns={columns} dataSource={dataSource} pagination={false} />
+      <Button onClick={() => setPage(page - 1)} disabled={page <= 1}>
+        Previous
+      </Button>
+      <Button onClick={() => setPage(page + 1)} disabled={isNextBtnDisabled}>
+        Next
+      </Button>
+      {page}
+    </>
+  );
+};
 export default App;
