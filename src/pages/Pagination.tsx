@@ -1,7 +1,9 @@
-import { Button, Table } from "antd";
+import { Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
+import { StyledButton } from "../global-styles";
 
 const apiUrl = "https://pokeapi.co/api/v2/pokemon";
 const limit = 10;
@@ -23,6 +25,13 @@ const columns: ColumnsType<DataType> = [
     key: "url",
   },
 ];
+
+const TableActionsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: var(--m-default);
+  gap: var(--m-default);
+`;
 
 const Pagination: React.FC = () => {
   const [page, setPage] = useState<number>(1);
@@ -50,13 +59,18 @@ const Pagination: React.FC = () => {
   return (
     <>
       <Table columns={columns} dataSource={dataSource} pagination={false} />
-      <Button onClick={() => setPage(page - 1)} disabled={page <= 1}>
-        Previous
-      </Button>
-      <Button onClick={() => setPage(page + 1)} disabled={isNextBtnDisabled}>
-        Next
-      </Button>
-      {page}
+      <TableActionsWrapper>
+        <StyledButton onClick={() => setPage(page - 1)} disabled={page <= 1}>
+          Previous
+        </StyledButton>
+        <StyledButton
+          onClick={() => setPage(page + 1)}
+          disabled={isNextBtnDisabled}
+        >
+          Next
+        </StyledButton>
+        <span className="page">{page}</span>
+      </TableActionsWrapper>
     </>
   );
 };
