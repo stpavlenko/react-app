@@ -6,14 +6,16 @@ import {
   IVYSAUR_ROUTE,
 } from "../../app/routes/config";
 import type { MenuProps } from "antd";
-import { Menu, Button, Switch, ConfigProvider } from "antd";
-import { useState } from "react";
+import { Menu, Button, Switch } from "antd";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 interface NavBarProps {
   isAuth: boolean;
   setIsAuth: (isAuthenticated: boolean) => void;
 }
+
+type ThemeType = "dark" | "light";
 
 export const StyledMenu = styled(Menu)`
   background: inherit;
@@ -26,12 +28,19 @@ export const StyledMenu = styled(Menu)`
 `;
 
 const NavBar: React.FC<NavBarProps> = ({ isAuth, setIsAuth }) => {
-  const [currentTheme, setCurrentTheme] = useState<"dark" | "light">("light");
+  const [currentTheme, setCurrentTheme] = useState<ThemeType>(
+    window.matchMedia("(prefers-color-scheme: light)").matches
+      ? "light"
+      : "dark"
+  );
 
   const changeColorTheme = () => {
     const newTheme = currentTheme === "light" ? "dark" : "light";
-    document.documentElement.setAttribute("data-theme", newTheme);
     setCurrentTheme(newTheme);
+  };
+
+  const setInitialTheme = (theme: ThemeType) => {
+    document.documentElement.setAttribute("data-theme", theme);
   };
 
   const toggleAuth = () => {
@@ -82,6 +91,10 @@ const NavBar: React.FC<NavBarProps> = ({ isAuth, setIsAuth }) => {
 
   if (isAuth) items.push(...authItems);
   items.push(...actionItems);
+
+  useEffect(() => {
+    setInitialTheme(currentTheme);
+  }, [currentTheme]);
 
   return <StyledMenu mode="horizontal" items={items} />;
 };
