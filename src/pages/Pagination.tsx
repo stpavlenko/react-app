@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { StyledButton } from "../global-styles";
 
-const apiUrl = "https://pokeapi.co/api/v2/pokemon";
-const limit = 10;
+const API_URL = "https://pokeapi.co/api/v2/pokemon";
+const LIMIT = 10;
 
 interface DataType {
   name: string;
@@ -38,10 +38,18 @@ const Pagination: React.FC = () => {
   const [dataSource, setDataSource] = useState<DataType[]>();
   const [isNextBtnDisabled, setNextBtnDisabled] = useState<boolean>(false);
 
+  const decreasePage = () => {
+    setPage((currentPage) => currentPage - 1);
+  };
+
+  const increasePage = () => {
+    setPage((currentPage) => currentPage + 1);
+  };
+
   const getData = async (page: number, limit: number) => {
     const offset = (page - 1) * limit;
 
-    const response = await axios.get(apiUrl, {
+    const response = await axios.get(API_URL, {
       params: {
         limit,
         offset,
@@ -53,23 +61,20 @@ const Pagination: React.FC = () => {
   };
 
   useEffect(() => {
-    getData(page, limit);
+    getData(page, LIMIT);
   }, [page]);
 
   return (
     <>
       <Table columns={columns} dataSource={dataSource} pagination={false} />
       <TableActionsWrapper>
-        <StyledButton onClick={() => setPage(page - 1)} disabled={page <= 1}>
+        <StyledButton onClick={decreasePage} disabled={page <= 1}>
           Previous
         </StyledButton>
-        <StyledButton
-          onClick={() => setPage(page + 1)}
-          disabled={isNextBtnDisabled}
-        >
+        <StyledButton onClick={increasePage} disabled={isNextBtnDisabled}>
           Next
         </StyledButton>
-        <span className="page">{page}</span>
+        <span>{page}</span>
       </TableActionsWrapper>
     </>
   );
