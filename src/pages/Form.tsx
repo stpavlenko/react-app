@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { StyledButton } from "../global-styles";
+import styled from "styled-components";
 
 interface IMyForm {
-  username: string;
-  password: string;
-  country: string;
+  first: string;
+  second: string;
+  third: string;
 }
 
 const Form = () => {
@@ -27,10 +29,27 @@ const Form = () => {
     reset();
   };
 
+  const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    gap: var(--m-default);
+    align-items: flex-start;
+  `;
+
+  const FormOutput = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: var(--m-default);
+
+    p {
+      margin: 0;
+    }
+  `;
+
   return (
-    <form onSubmit={handleSubmit(saveElement)}>
+    <StyledForm onSubmit={handleSubmit(saveElement)}>
       <input
-        {...register("username", {
+        {...register("first", {
           required: "Поле обязательно для заполнения",
           minLength: {
             value: 5,
@@ -38,9 +57,9 @@ const Form = () => {
           },
         })}
       />
-      <div>{errors.username?.message}</div>
+      <div>{errors.first?.message}</div>
       <input
-        {...register("password", {
+        {...register("second", {
           required: "Поле обязательно для заполнения",
           minLength: {
             value: 10,
@@ -48,9 +67,9 @@ const Form = () => {
           },
         })}
       />
-      <div>{errors.password?.message}</div>
+      <div>{errors.second?.message}</div>
       <input
-        {...register("country", {
+        {...register("third", {
           required: "Поле обязательно для заполнения",
           minLength: {
             value: 10,
@@ -58,19 +77,20 @@ const Form = () => {
           },
         })}
       />
-      <div>{errors.country?.message}</div>
-      <button type="submit" disabled={!isValid}>
+      <div>{errors.third?.message}</div>
+      <StyledButton htmlType="submit" disabled={!isValid}>
         Сохранить
-      </button>
-      {tasks.map((task) => (
-        <>
-          <p>
-            {task.username} - {task.password}
-          </p>
-          <p>{task.country}</p>
-        </>
-      ))}
-    </form>
+      </StyledButton>
+      <FormOutput>
+        {tasks.map((task) => (
+          <>
+            <p>first: {task.first}</p>
+            <p>second {task.second}</p>
+            <p>third: {task.third}</p>
+          </>
+        ))}
+      </FormOutput>
+    </StyledForm>
   );
 };
 
