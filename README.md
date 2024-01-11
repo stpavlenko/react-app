@@ -1,6 +1,6 @@
 # Павленко Степан 221-321
 
-[Видео работы приложения](https://drive.google.com/file/d/1LXjE183HvjftqJ8WuMuhlIFbR55qfLi8/view?usp=sharing)
+[Видео работы приложения](https://drive.google.com/file/d/1m-oEj8IcEi6VyDkAPcqT_9HAx-uhGjFS/view?usp=sharing)
 
 # React + TypeScript + Vite
 
