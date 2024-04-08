@@ -30,10 +30,7 @@ const Index = () => {
         reader.readAsDataURL(data.picture[0])
 
         reader.onload = () => {
-            console.log(reader.result)
-            console.log(data)
-            const newTask = {first: data.first, picture: reader.result as string}
-            setTasks([newTask]);
+            setTasks([{first: data.first, picture: reader.result as string}]);
             reset();
         }
     };
