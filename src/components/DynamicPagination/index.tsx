@@ -16,17 +16,26 @@ const Observer = styled.div`
 const DynamicPagination: FC = () => {
     const [pokemons, setPokemons] = useState<IPokemonItem[]>([])
     const [page, setPage] = useState<number>(1);
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+
     const {ref, inView} = useInView({
         threshold: 0.5,
     });
     const getData = async (page: number, limit: number) => {
         const offset = (page - 1) * limit;
 
-        const response = await axios.get(API_URL, {
-            params: {limit, offset},
-        });
+        try {
+            setIsLoading(true)
+            const response = await axios.get(API_URL, {
+                params: {limit, offset},
+            });
+            setPokemons(prev => [...prev, ...response.data.results])
+        } catch (e) {
+            console.error(e)
+        } finally {
+            setIsLoading(false)
+        }
 
-        setPokemons(prev => [...prev, ...response.data.results])
     };
 
     useEffect(() => {
@@ -49,7 +58,7 @@ const DynamicPagination: FC = () => {
                 ))}
             </Flex>
 
-            <Observer ref={ref}></Observer>
+            {!isLoading && <Observer ref={ref}></Observer>}
         </>
     )
 }
