@@ -1,6 +1,6 @@
 import {FC, useEffect, useState} from "react";
 import PokemonCard from "../PokemonCard";
-import {IPokemonCard} from "../PokemonCard/types.ts";
+import {IPokemonItem} from "../PokemonCard/types.ts";
 import axios from "axios";
 import {useInView} from "react-intersection-observer";
 import {Flex} from "antd";
@@ -14,7 +14,7 @@ const Observer = styled.div`
     height: 3rem;
 `
 const DynamicPagination: FC = () => {
-    const [pokemons, setPokemons] = useState<IPokemonCard[]>([])
+    const [pokemons, setPokemons] = useState<IPokemonItem[]>([])
     const [page, setPage] = useState<number>(1);
     const {ref, inView} = useInView({
         threshold: 0.5,

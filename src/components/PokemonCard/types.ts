@@ -1,7 +1,7 @@
-export interface IPokemonCardProps extends IPokemonCard {
+export interface IPokemonCardProps extends IPokemonItem {
 }
 
-export interface IPokemonCard {
+export interface IPokemonItem {
     name: string,
     url: string
 }

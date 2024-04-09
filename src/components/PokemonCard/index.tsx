@@ -11,7 +11,6 @@ const PokemonCard: FC<IPokemonCardProps> = ({name, url}) => {
             cover={
                 <img
                     alt="pokemon"
-                    // src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`}
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`}
                 />
             }
