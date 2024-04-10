@@ -25,11 +25,11 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 export const StyledButton = styled(Button)`
-    &.ant-btn {
-        &:disabled {
-            background-color: #fff;
-        }
+  &.ant-btn {
+    &:disabled {
+      background-color: #fff;
     }
+  }
 `;
 
 export default GlobalStyles;
