@@ -12,10 +12,8 @@ const MainRouter = ({ isAuth = false }) => {
     { path: IVYSAUR_ROUTE, element: <Ivysaur /> },
     { path: "*", element: <Navigate to={"/"} replace /> },
   ];
-  
-  const authPath: RouteObject[] = [
-    { path: FORM_ROUTE, element: <Form /> },
-  ];
+
+  const authPath: RouteObject[] = [{ path: FORM_ROUTE, element: <Form /> }];
 
   const resultPaths: RouteObject[] = basedPath;
 

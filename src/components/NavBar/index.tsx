@@ -1,10 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  PAGINATION_ROUTE,
-  FORM_ROUTE,
-  BULBASAUR_ROUTE,
-  IVYSAUR_ROUTE,
-} from "../../app/routes/config";
+import { PAGINATION_ROUTE, FORM_ROUTE, BULBASAUR_ROUTE, IVYSAUR_ROUTE } from "../../app/routes/config";
 import type { MenuProps } from "antd";
 import { Menu, Button, Switch } from "antd";
 import { useEffect, useState } from "react";
@@ -29,9 +24,7 @@ export const StyledMenu = styled(Menu)`
 
 const NavBar: React.FC<NavBarProps> = ({ isAuth, setIsAuth }) => {
   const [currentTheme, setCurrentTheme] = useState<ThemeType>(
-    window.matchMedia("(prefers-color-scheme: light)").matches
-      ? "light"
-      : "dark"
+    window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark",
   );
 
   const changeColorTheme = () => {

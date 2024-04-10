@@ -9,5 +9,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <GlobalStyles />
     <App />
-  </BrowserRouter>
+  </BrowserRouter>,
 );
