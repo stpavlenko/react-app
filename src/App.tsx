@@ -9,6 +9,7 @@ const App = () => {
   return (
     <>
       <NavBar isAuth={isAuth} setIsAuth={setIsAuth}></NavBar>
+      <NavBar isAuth={isAuth} setIsAuth={setIsAuth}></NavBar>
       <MainRouter isAuth={isAuth} />
     </>
   );
