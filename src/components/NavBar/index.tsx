@@ -45,7 +45,7 @@ const NavBar: React.FC<NavBarProps> = ({ isAuth, setIsAuth }) => {
   const items: MenuProps["items"] = [
     {
       label: <Link to={PAGINATION_ROUTE}>Pagination</Link>,
-      key: "paginationnnn",
+      key: "pagination",
     },
     {
       label: <Link to={BULBASAUR_ROUTE}>Bulbasaur</Link>,
