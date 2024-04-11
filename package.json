@@ -46,7 +46,6 @@
     "./src/**/*.{js,json,jsx,ts,tsx,css}": [
       "prettify",
       "eslint --fix"
-    ],
-    "*.{ts,tsx}": "eslint --cache --fix"
+    ]
   }
 }
