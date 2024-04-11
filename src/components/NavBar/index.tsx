@@ -13,13 +13,13 @@ interface NavBarProps {
 type ThemeType = "dark" | "light";
 
 export const StyledMenu = styled(Menu)`
-  background: inherit;
-  color: inherit;
-  margin-bottom: 0.5rem;
+    background: inherit;
+    color: inherit;
+    margin-bottom: 0.5rem;
 
-  .ant-menu-item-active {
-    color: inherit !important;
-  }
+    .ant-menu-item-active {
+        color: inherit !important;
+    }
 `;
 
 const NavBar: React.FC<NavBarProps> = ({ isAuth, setIsAuth }) => {
@@ -45,7 +45,7 @@ const NavBar: React.FC<NavBarProps> = ({ isAuth, setIsAuth }) => {
   const items: MenuProps["items"] = [
     {
       label: <Link to={PAGINATION_ROUTE}>Pagination</Link>,
-      key: "pagination",
+      key: "paginationnnn",
     },
     {
       label: <Link to={BULBASAUR_ROUTE}>Bulbasaur</Link>,
