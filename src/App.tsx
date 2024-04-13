@@ -10,8 +10,6 @@ const App = () => {
     <>
       <NavBar isAuth={isAuth} setIsAuth={setIsAuth}></NavBar>
       <MainRouter isAuth={isAuth} />
-      <MainRouter isAuth={isAuth} />
-      <MainRouter isAuth={isAuth} />
     </>
   );
 };
