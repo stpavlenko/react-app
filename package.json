@@ -44,7 +44,7 @@
   },
   "lint-staged": {
     "./src/**/*.{js,json,jsx,ts,tsx,css}": [
-      "prettify",
+      "npm run prettify",
       "eslint --fix"
     ]
   }
