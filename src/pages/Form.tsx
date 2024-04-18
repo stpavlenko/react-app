@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { StyledButton } from "../global-styles";
@@ -30,20 +29,20 @@ const Form = () => {
   };
 
   const StyledForm = styled.form`
-    display: flex;
-    flex-direction: column;
-    gap: var(--m-default);
-    align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: var(--m-default);
+      align-items: flex-start;
   `;
 
   const FormOutput = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: var(--m-default);
+      display: flex;
+      flex-direction: column;
+      gap: var(--m-default);
 
-    p {
-      margin: 0;
-    }
+      p {
+          margin: 0;
+      }
   `;
 
   return (
