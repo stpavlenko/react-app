@@ -11,8 +11,8 @@ const LIMIT = 10;
 
 const DynamicPagination: FC = () => {
   const [pokemons, setPokemons] = useState<IPokemonItem[]>([]);
-  const [page, setPage] = useState<number>(1);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { ref, inView } = useInView({
     threshold: 0.5,
