@@ -12,11 +12,14 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^3.4.2",
     "antd": "^5.12.5",
     "axios": "^1.6.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",
+    "react-intersection-observer": "^9.8.2",
+    "react-query": "^3.39.3",
     "react-router-dom": "^6.21.1",
     "styled-components": "^6.1.6"
   },

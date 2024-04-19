@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
-import { PAGINATION_ROUTE, FORM_ROUTE, BULBASAUR_ROUTE, IVYSAUR_ROUTE } from "../../app/routes/config";
 import type { MenuProps } from "antd";
-import { Menu, Button, Switch } from "antd";
+import { Button, Switch } from "antd";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import { StyledMenu } from "./style.tsx";
+import { authItems, defaultItems } from "./items.tsx";
 
 interface NavBarProps {
   isAuth: boolean;
@@ -11,16 +10,6 @@ interface NavBarProps {
 }
 
 type ThemeType = "dark" | "light";
-
-export const StyledMenu = styled(Menu)`
-  background: inherit;
-  color: inherit;
-  margin-bottom: 0.5rem;
-
-  .ant-menu-item-active {
-    color: inherit !important;
-  }
-`;
 
 const NavBar: React.FC<NavBarProps> = ({ isAuth, setIsAuth }) => {
   const [currentTheme, setCurrentTheme] = useState<ThemeType>(
@@ -42,28 +31,6 @@ const NavBar: React.FC<NavBarProps> = ({ isAuth, setIsAuth }) => {
 
   const authButtonText = isAuth ? "Log out" : "Log in";
 
-  const items: MenuProps["items"] = [
-    {
-      label: <Link to={PAGINATION_ROUTE}>Pagination</Link>,
-      key: "pagination",
-    },
-    {
-      label: <Link to={BULBASAUR_ROUTE}>Bulbasaur</Link>,
-      key: "bulbasaur",
-    },
-    {
-      label: <Link to={IVYSAUR_ROUTE}>Ivysaur</Link>,
-      key: "ivysaur",
-    },
-  ];
-
-  const authItems: MenuProps["items"] = [
-    {
-      label: <Link to={FORM_ROUTE}>Form</Link>,
-      key: "Form",
-    },
-  ];
-
   const actionItems: MenuProps["items"] = [
     {
       label: (
@@ -82,7 +49,9 @@ const NavBar: React.FC<NavBarProps> = ({ isAuth, setIsAuth }) => {
     },
   ];
 
-  if (isAuth) items.push(...authItems);
+  const items: MenuProps["items"] = [];
+  items.push(...(defaultItems as []));
+  if (isAuth) items.push(...(authItems as []));
   items.push(...actionItems);
 
   useEffect(() => {

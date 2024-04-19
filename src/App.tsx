@@ -4,7 +4,7 @@ import NavBar from "./components/NavBar";
 import { useState } from "react";
 
 const App = () => {
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [isAuth, setIsAuth] = useState<boolean>(true);
 
   return (
     <>
