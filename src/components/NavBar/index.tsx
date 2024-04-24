@@ -13,9 +13,7 @@ type ThemeType = "dark" | "light";
 
 const NavBar: React.FC<NavBarProps> = ({ isAuth, setIsAuth }) => {
   const [currentTheme, setCurrentTheme] = useState<ThemeType>(
-    window.matchMedia("(prefers-color-scheme: light)").matches
-      ? "light"
-      : "dark",
+    window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark",
   );
 
   const changeColorTheme = () => {

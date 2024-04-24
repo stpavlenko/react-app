@@ -1,9 +1,9 @@
 export interface IForm {
-    first: string,
-    picture: FileList,
+  first: string;
+  picture: FileList;
 }
 
 export interface ITasks {
-    first: string,
-    picture: string,
+  first: string;
+  picture: string;
 }
