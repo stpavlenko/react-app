@@ -47,7 +47,7 @@ const NavBar: React.FC<NavBarProps> = ({ isAuth, setIsAuth }) => {
     },
     {
       label: <Button onClick={toggleAuth}>{authButtonText}</Button>,
-      key: "auth",
+      key: "fakeAuth",
     },
   ];
 

@@ -6,6 +6,7 @@ import {
   IVYSAUR_ROUTE,
   PAGINATION_ROUTE,
   POKEMONS_ROUTE,
+  AUTH_ROUTE,
 } from "../../app/routes/config.ts";
 
 export const defaultItems: MenuProps["items"] = [
@@ -24,6 +25,10 @@ export const defaultItems: MenuProps["items"] = [
   {
     label: <Link to={POKEMONS_ROUTE}>Pokemons</Link>,
     key: "pokemons",
+  },
+  {
+    label: <Link to={AUTH_ROUTE}>Login</Link>,
+    key: "auth",
   },
 ];
 
