@@ -7,11 +7,11 @@ export default defineConfig({
   plugins: [react(),
     VitePWA({
       registerType: "prompt",
-      includeAssets: ["favicon.ico", "logo.png", "logo.svg"],
+      includeAssets: ["logo.ico", "logo.png"],
       manifest: {
-        name: "React-vite-app",
-        short_name: "react-vite-app",
-        description: "I am a simple vite app",
+        name: "React pokemons",
+        short_name: "React pokemons",
+        description: "React pokemons app",
         icons: [
           {
             src: "/logo.png",
