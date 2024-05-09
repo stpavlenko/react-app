@@ -4,12 +4,13 @@ import { Card } from "antd";
 
 const PokemonCard: FC<IPokemonCardProps> = ({ name, url }) => {
   const id = url.split("/").at(-2);
-
   return (
     <Card
+      data-testid="pokemon-card"
       style={{ width: 200 }}
       cover={
         <img
+          data-testid="pokemon-card-img"
           alt="pokemon"
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`}
         />
