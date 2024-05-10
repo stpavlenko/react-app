@@ -1,17 +1,10 @@
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { StyledButton } from "../../global-styles.tsx";
-import styled from "styled-components";
 import { IForm, ITasks } from "./types.ts";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import PdfDocument from "../../components/PdfDocument";
-
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: var(--m-default);
-  align-items: flex-start;
-`;
+import { StyledForm } from "./style.tsx";
 
 const Index = () => {
   const {
@@ -38,6 +31,7 @@ const Index = () => {
   return (
     <StyledForm onSubmit={handleSubmit(saveElement)}>
       <input
+        data-testid="input"
         {...register("first", {
           required: "Поле обязательно для заполнения",
           minLength: {
@@ -49,6 +43,7 @@ const Index = () => {
       <div>{errors.first?.message}</div>
 
       <input
+        data-testid="image-upload"
         type="file"
         accept="image/*"
         {...register("picture", {
@@ -57,7 +52,7 @@ const Index = () => {
       />
       <div>{errors.picture?.message}</div>
 
-      <StyledButton htmlType="submit" disabled={!isValid}>
+      <StyledButton htmlType="submit" disabled={!isValid} data-testid="submit-btn">
         Сохранить
       </StyledButton>
       {!!tasks[0]?.first && !!tasks[0]?.picture && (
