@@ -30,10 +30,10 @@ const Index = () => {
     try {
       console.log(data);
       const response = await axios.post(`${API_URL}auth/token/`, data, {
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
+        // headers: {
+        //   "Content-Type": "application/json",
+        //   "Accept": "application/json",
+        // },
       });
       console.log(response);
     } catch (e) {
