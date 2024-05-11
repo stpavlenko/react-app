@@ -43,7 +43,7 @@ const DynamicPagination: FC = () => {
 
   return (
     <>
-      <Flex wrap="wrap" gap="middle" justify="space-between">
+      <Flex wrap="wrap" gap="middle" justify="center">
         {pokemons.map((pokemon) => (
           <PokemonCard key={pokemon.name} name={pokemon.name} url={pokemon.url} />
         ))}
