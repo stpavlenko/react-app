@@ -1,4 +1,4 @@
 export interface IPdfDocumentProps {
-    first: string,
-    picture: string
+  first: string;
+  picture: string;
 }

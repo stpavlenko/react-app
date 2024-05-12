@@ -25,13 +25,12 @@ const DynamicPagination: FC = () => {
       const response = await axios.get(API_URL, {
         params: { limit, offset },
       });
-      setPokemons(prev => [...prev, ...response.data.results]);
+      setPokemons((prev) => [...prev, ...response.data.results]);
     } catch (e) {
       console.error(e);
     } finally {
       setIsLoading(false);
     }
-
   };
 
   useEffect(() => {
@@ -45,12 +44,8 @@ const DynamicPagination: FC = () => {
   return (
     <>
       <Flex wrap="wrap" gap="middle" justify="space-between">
-        {pokemons.map(pokemon => (
-          <PokemonCard
-            key={pokemon.name}
-            name={pokemon.name}
-            url={pokemon.url}
-          />
+        {pokemons.map((pokemon) => (
+          <PokemonCard key={pokemon.name} name={pokemon.name} url={pokemon.url} />
         ))}
       </Flex>
 
