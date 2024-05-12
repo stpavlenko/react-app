@@ -66,7 +66,7 @@ const Pagination: React.FC = () => {
 
   return (
     <>
-      <Table columns={columns} dataSource={dataSource} pagination={false} />
+      <Table columns={columns} dataSource={dataSource} pagination={false} rowKey="name" scroll={{ x: true }} />
       <TableActionsWrapper>
         <StyledButton onClick={decreasePage} disabled={page <= 1}>
           Previous

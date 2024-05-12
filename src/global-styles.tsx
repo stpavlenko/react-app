@@ -6,6 +6,12 @@ const GlobalStyles = createGlobalStyle`
         --m-default: 0.5rem;
     }
 
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
     body {
         background-color: var(--bg);
         color: var(--color)

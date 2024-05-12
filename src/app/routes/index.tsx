@@ -1,16 +1,12 @@
 import { Navigate, RouteObject, useRoutes } from "react-router-dom";
 import Pagination from "../../pages/Pagination";
-import Bulbasaur from "../../pages/Bulbasaur";
-import Ivysaur from "../../pages/Ivysaur";
 import Form from "../../pages/Form";
 import Pokemons from "../../pages/Pokemons";
-import { PAGINATION_ROUTE, FORM_ROUTE, BULBASAUR_ROUTE, IVYSAUR_ROUTE, POKEMONS_ROUTE } from "./config";
+import { PAGINATION_ROUTE, FORM_ROUTE, POKEMONS_ROUTE } from "./config";
 
 const MainRouter = ({ isAuth = false }) => {
   const basedPath: RouteObject[] = [
     { path: PAGINATION_ROUTE, element: <Pagination /> },
-    { path: BULBASAUR_ROUTE, element: <Bulbasaur /> },
-    { path: IVYSAUR_ROUTE, element: <Ivysaur /> },
     { path: POKEMONS_ROUTE, element: <Pokemons /> },
     { path: "*", element: <Navigate to={"/"} replace /> },
   ];
