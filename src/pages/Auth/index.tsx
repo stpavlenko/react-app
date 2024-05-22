@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
 import { IForm } from "./types.ts";
 import { Button } from "antd";
-import axios from "axios";
-
-const API_URL = "http://localhost:8000/";
+import { useState } from "react";
+import authInstance from "../../helpers/axios";
 
 const StyledForm = styled.form`
     display: flex;
@@ -19,25 +17,20 @@ const Index = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    reset,
   } = useForm<IForm>({
     mode: "onBlur",
   });
-
-  // const [tasks, setTasks] = useState<ITasks[]>([]);
+  const [axiosError, setAxiosError] = useState("");
 
   const auth: SubmitHandler<IForm> = async (data) => {
+    setAxiosError("");
     try {
-      console.log(data);
-      const response = await axios.post(`${API_URL}auth/token/`, data, {
-        // headers: {
-        //   "Content-Type": "application/json",
-        //   "Accept": "application/json",
-        // },
-      });
-      console.log(response);
+      const response = await authInstance.post("auth/token/", data);
+      localStorage.setItem("access_token", response.headers["authorization"]);
+      window.dispatchEvent(new Event("storage"));
     } catch (e) {
-      console.log(e);
+      if (e?.response?.status === 403) setAxiosError("Invalid user or password");
+      else setAxiosError("Error");
     }
   };
 
@@ -45,20 +38,26 @@ const Index = () => {
     <StyledForm onSubmit={handleSubmit(auth)}>
       <input
         {...register("username", {
-          required: "Поле обязательно для заполнения",
+          required: "Required field",
         })}
+        placeholder="Username"
       />
       <div>{errors.username?.message}</div>
 
       <input
         {...register("password", {
-          required: "Поле обязательно для заполнения",
+          required: "Required field",
+          minLength: { value: 8, message: "Minimum password length 8 characters" },
         })}
+        placeholder="Password"
+        type="password"
       />
       <div>{errors.password?.message}</div>
 
+      {axiosError && <span>{axiosError}</span>}
+
       <Button htmlType="submit" disabled={!isValid}>
-        Войти
+        Log in
       </Button>
     </StyledForm>
   );

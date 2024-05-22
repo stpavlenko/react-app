@@ -2,11 +2,10 @@ import { MenuProps } from "antd";
 import { Link } from "react-router-dom";
 import {
   BULBASAUR_ROUTE,
-  FORM_ROUTE,
   IVYSAUR_ROUTE,
   PAGINATION_ROUTE,
   POKEMONS_ROUTE,
-  AUTH_ROUTE,
+  AUTH_ROUTE, PDF_ROUTE,
 } from "../../app/routes/config.ts";
 
 export const defaultItems: MenuProps["items"] = [
@@ -30,11 +29,8 @@ export const defaultItems: MenuProps["items"] = [
     label: <Link to={AUTH_ROUTE}>Login</Link>,
     key: "auth",
   },
-];
-
-export const authItems: MenuProps["items"] = [
   {
-    label: <Link to={FORM_ROUTE}>Form</Link>,
-    key: "Form",
+    label: <Link to={PDF_ROUTE}>Pdf</Link>,
+    key: "Pdf",
   },
 ];

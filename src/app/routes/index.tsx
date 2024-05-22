@@ -2,20 +2,25 @@ import { Navigate, RouteObject, useRoutes } from "react-router-dom";
 import Pagination from "../../pages/Pagination";
 import Bulbasaur from "../../pages/Bulbasaur";
 import Ivysaur from "../../pages/Ivysaur";
-import Form from "../../pages/Form";
+import Pdf from "../../pages/Pdf";
 import Pokemons from "../../pages/Pokemons";
-import { PAGINATION_ROUTE, FORM_ROUTE, BULBASAUR_ROUTE, IVYSAUR_ROUTE, POKEMONS_ROUTE } from "./config";
+import Auth from "../../pages/Auth";
+import { PAGINATION_ROUTE, PDF_ROUTE, BULBASAUR_ROUTE, IVYSAUR_ROUTE, POKEMONS_ROUTE, AUTH_ROUTE } from "./config";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
-const MainRouter = ({ isAuth = false }) => {
+const MainRouter = () => {
+  const { isAuth } = useContext(AuthContext);
   const basedPath: RouteObject[] = [
     { path: PAGINATION_ROUTE, element: <Pagination /> },
     { path: BULBASAUR_ROUTE, element: <Bulbasaur /> },
     { path: IVYSAUR_ROUTE, element: <Ivysaur /> },
     { path: POKEMONS_ROUTE, element: <Pokemons /> },
+    { path: AUTH_ROUTE, element: <Auth /> },
     { path: "*", element: <Navigate to={"/"} replace /> },
   ];
 
-  const authPath: RouteObject[] = [{ path: FORM_ROUTE, element: <Form /> }];
+  const authPath: RouteObject[] = [{ path: PDF_ROUTE, element: <Pdf /> }];
 
   const resultPaths: RouteObject[] = basedPath;
 

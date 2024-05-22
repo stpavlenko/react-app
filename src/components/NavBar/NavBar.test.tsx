@@ -3,13 +3,11 @@ import NavBar from "./index.tsx";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 
-function setIsAuth() {}
-
 describe("NavBar", () => {
   it("renders Pokemons item label", () => {
     render(
       <BrowserRouter>
-        <NavBar isAuth={false} setIsAuth={setIsAuth} />,
+        <NavBar />,
       </BrowserRouter>,
     );
 
@@ -19,7 +17,7 @@ describe("NavBar", () => {
   it("renders AuthItems if isAuth=true is passed", () => {
     render(
       <BrowserRouter>
-        <NavBar isAuth={true} setIsAuth={setIsAuth} />,
+        <NavBar />,
       </BrowserRouter>,
     );
 
