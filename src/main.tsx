@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import GlobalStyles from "./global-styles.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
+  <BrowserRouter basename="/react-app">
     <GlobalStyles />
     <App />
   </BrowserRouter>,
