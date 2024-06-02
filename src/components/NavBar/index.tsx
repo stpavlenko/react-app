@@ -1,21 +1,33 @@
-import type { MenuProps } from "antd";
-import { Button, Switch } from "antd";
-import { useEffect, useState } from "react";
+import { Button, MenuProps } from "antd";
+import { Switch } from "antd";
+import { useContext, useEffect, useState } from "react";
 import { StyledMenu } from "./style.tsx";
-import { authItems, defaultItems } from "./items.tsx";
-
-interface NavBarProps {
-  isAuth: boolean;
-  setIsAuth: (isAuthenticated: boolean) => void;
-}
+import { defaultItems } from "./items.tsx";
+import { AuthContext } from "../../providers/AuthProvider";
+import authInstance from "../../helpers/axios";
+import { useNavigate } from "react-router-dom";
 
 type ThemeType = "dark" | "light";
 
-const NavBar: React.FC<NavBarProps> = ({ isAuth, setIsAuth }) => {
+const NavBar: React.FC = () => {
+  const { isAuth, setIsAuth } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [currentTheme, setCurrentTheme] = useState<ThemeType>(
     window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark",
   );
 
+  const logout = async () => {
+    try {
+      const response = await authInstance.post("auth/logout/");
+      if (response.status === 200) {
+        localStorage.removeItem("access_token");
+        setIsAuth(false);
+        navigate("/auth");
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
   const changeColorTheme = () => {
     const newTheme = currentTheme === "light" ? "dark" : "light";
     setCurrentTheme(newTheme);
@@ -24,12 +36,6 @@ const NavBar: React.FC<NavBarProps> = ({ isAuth, setIsAuth }) => {
   const setInitialTheme = (theme: ThemeType) => {
     document.documentElement.setAttribute("data-theme", theme);
   };
-
-  const toggleAuth = () => {
-    setIsAuth(!isAuth);
-  };
-
-  const authButtonText = isAuth ? "Log out" : "Log in";
 
   const actionItems: MenuProps["items"] = [
     {
@@ -43,9 +49,12 @@ const NavBar: React.FC<NavBarProps> = ({ isAuth, setIsAuth }) => {
       ),
       key: "theme",
     },
+  ];
+
+  const authItems: MenuProps["items"] = [
     {
-      label: <Button onClick={toggleAuth}>{authButtonText}</Button>,
-      key: "auth",
+      label: <Button onClick={logout}>Log out</Button>,
+      key: "logOut",
     },
   ];
 

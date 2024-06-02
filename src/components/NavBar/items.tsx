@@ -1,6 +1,12 @@
 import { MenuProps } from "antd";
 import { Link } from "react-router-dom";
-import { FORM_ROUTE, PAGINATION_ROUTE, POKEMONS_ROUTE } from "../../app/routes/config.ts";
+import {
+  BULBASAUR_ROUTE,
+  IVYSAUR_ROUTE,
+  PAGINATION_ROUTE,
+  POKEMONS_ROUTE,
+  AUTH_ROUTE, PDF_ROUTE,
+} from "../../app/routes/config.ts";
 
 export const defaultItems: MenuProps["items"] = [
   {
@@ -8,14 +14,23 @@ export const defaultItems: MenuProps["items"] = [
     key: "pagination",
   },
   {
+    label: <Link to={BULBASAUR_ROUTE}>Bulbasaur</Link>,
+    key: "bulbasaur",
+  },
+  {
+    label: <Link to={IVYSAUR_ROUTE}>Ivysaur</Link>,
+    key: "ivysaur",
+  },
+  {
     label: <Link to={POKEMONS_ROUTE}>Pokemons</Link>,
     key: "pokemons",
   },
-];
-
-export const authItems: MenuProps["items"] = [
   {
-    label: <Link to={FORM_ROUTE}>Form</Link>,
-    key: "Form",
+    label: <Link to={AUTH_ROUTE}>Login</Link>,
+    key: "auth",
+  },
+  {
+    label: <Link to={PDF_ROUTE}>Pdf</Link>,
+    key: "Pdf",
   },
 ];
